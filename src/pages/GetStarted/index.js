@@ -5,13 +5,10 @@ import {Button} from '../../components';
 import {ILVehicle} from '../../assets/images';
 
 const GetStarted = ({navigation}) => {
-  const login = () => {
-    navigation.navigate('Login');
+  const handleGoTo = (screen) => {
+    navigation.navigate(screen);
   };
 
-  const signUp = () => {
-    navigation.navigate('SignUp');
-  };
   return (
     <View style={styles.page}>
       <View>
@@ -22,12 +19,12 @@ const GetStarted = ({navigation}) => {
         <Button
           title="Silahlan masuk jika anda sudah memiliki akun"
           titleBtn="Login"
-          onPress={login}
+          onPress={() => handleGoTo('Login')}
         />
         <Button
           title="Silahlan masuk jika anda sudah memiliki akun"
           titleBtn="Sign Up"
-          onPress={signUp}
+          onPress={() => handleGoTo('Register')}
         />
       </View>
     </View>
@@ -46,7 +43,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   ilustration: {
-    width: 225,
+    width: 250,
     height: 125,
     backgroundColor: '#00B0FF',
   },
