@@ -36,7 +36,7 @@ export default Input;
 
 const styles = EStyleSheet.create({
   container: {
-    marginTop: '10rem',
+    marginTop: '15rem',
     justifyContent: 'space-between',
   },
   textInput: {
@@ -50,9 +50,6 @@ const styles = EStyleSheet.create({
     color: '#B1B7C2',
   },
   wrapperIcon: {
-    backgroundColor: 'rem',
-    width: '25rem',
-    height: '20rem',
     marginLeft: 'auto',
     bottom: '32rem',
     right: '15rem',

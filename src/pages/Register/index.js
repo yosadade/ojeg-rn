@@ -4,8 +4,11 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import {Header, Input, Button} from '../../components';
 import {fonts} from '../../utils';
 import {ILPayment} from '../../assets/images';
+import {useSelector} from 'react-redux';
 
 const Register = ({navigation}) => {
+  const globalState = useSelector((state) => state);
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -20,6 +23,7 @@ const Register = ({navigation}) => {
       email: email,
       password: password,
     };
+    // axios.post('url', data);
     navigation.navigate('Login', data);
     console.log('Register success dan kirim data ke Login');
     console.log(data);
@@ -37,9 +41,7 @@ const Register = ({navigation}) => {
         <Header onPress={handleBack} />
         <View style={styles.wrapperIlustration}>
           <Image source={ILPayment} style={styles.ilustration} />
-          <Text style={styles.title}>
-            Mohon mengisi beberapa data untuk proses daftar anda
-          </Text>
+          <Text style={styles.title}>{globalState.name}</Text>
         </View>
       </>
       <>

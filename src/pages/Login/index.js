@@ -3,12 +3,13 @@ import {Text, View, Image} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import {Header, Input, Button} from '../../components';
 import {fonts} from '../../utils';
-import {ILPayment, ILSmile} from '../../assets/images';
+import {ILSmile} from '../../assets/images';
 
 const Register = ({navigation}) => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [form, setForm] = useState({
+    email: '',
+    password: '',
+  });
   const [secureTextEntry, setSecureTextEntry] = useState(true);
 
   const handleBack = () => {
@@ -16,16 +17,12 @@ const Register = ({navigation}) => {
   };
   const handleSignUp = () => {
     const data = {
-      name: name,
-      email: email,
-      password: password,
+      email: form.email,
+      password: form.password,
     };
-    navigation.navigate('Login', data);
-    console.log('Register success dan kirim data ke Login');
+    navigation.replace('MainApp', data);
     console.log(data);
-    setName('');
-    setEmail('');
-    setPassword('');
+    setForm('');
   };
   return (
     // <ScrollView showsVerticalScrollIndicator={false}>
@@ -42,14 +39,14 @@ const Register = ({navigation}) => {
       <>
         <View style={styles.input}>
           <Input
-            placeholder="Nama Lengkap"
-            value={name}
-            onChangeText={(value) => setName(value)}
+            placeholder="Email"
+            value={form.email}
+            onChangeText={(value) => setForm('email', value)}
           />
           <Input
-            placeholder="Email"
-            value={email}
-            onChangeText={(value) => setEmail(value)}
+            placeholder="Password"
+            value={form.password}
+            onChangeText={(value) => setForm('password', value)}
           />
         </View>
         <View style={styles.button}>
