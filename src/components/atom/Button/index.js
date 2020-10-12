@@ -1,5 +1,6 @@
 import React from 'react';
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {Text, View, TouchableOpacity} from 'react-native';
+import EStyleSheet from 'react-native-extended-stylesheet';
 import {fonts} from '../../../utils';
 
 const Button = ({title, onPress, titleBtn}) => {
@@ -15,30 +16,30 @@ const Button = ({title, onPress, titleBtn}) => {
 
 export default Button;
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
   },
   title: {
-    fontFamily: fonts.primary[500],
-    fontSize: 10,
-    marginBottom: 6,
-    paddingHorizontal: '18%',
+    fontFamily: fonts.primary[600],
+    fontSize: '10rem',
+    marginBottom: '6rem',
+    paddingHorizontal: '50rem',
     color: '#44c5fc',
     textAlign: 'center',
   },
   button: {
-    width: 225,
-    paddingVertical: 15,
-    borderRadius: 25,
-    marginBottom: 33,
+    width: '225rem',
+    paddingVertical: '15rem',
+    borderRadius: '25rem',
+    marginBottom: '33rem',
     backgroundColor: '#00B0FF',
     justifyContent: 'center',
     alignItems: 'center',
   },
   btnTitle: {
-    fontSize: 12,
+    fontSize: '12rem',
     fontFamily: fonts.primary[900],
     color: '#FFFFFF',
     textTransform: 'uppercase',

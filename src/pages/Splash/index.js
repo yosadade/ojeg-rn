@@ -1,5 +1,6 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
+import EStyleSheet from 'react-native-extended-stylesheet';
 import {fonts} from '../../utils';
 
 const Splash = ({navigation}) => {
@@ -15,7 +16,7 @@ const Splash = ({navigation}) => {
 
 export default Splash;
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
   page: {
     flex: 1,
     backgroundColor: '#FFFFFF',
@@ -28,7 +29,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   title: {
-    fontSize: 45,
+    fontSize: '45rem',
     fontFamily: fonts.primary[900],
     color: '#00B0FF',
   },

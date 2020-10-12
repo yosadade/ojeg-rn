@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import {StyleSheet, Text, View, Image, ScrollView} from 'react-native';
+import {Text, View, Image} from 'react-native';
+import EStyleSheet from 'react-native-extended-stylesheet';
 import {Header, Input, Button} from '../../components';
 import {fonts} from '../../utils';
 import {ILPayment} from '../../assets/images';
@@ -8,6 +9,8 @@ const Register = ({navigation}) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [secureTextEntry, setSecureTextEntry] = useState(true);
+
   const handleBack = () => {
     navigation.goBack();
   };
@@ -24,79 +27,72 @@ const Register = ({navigation}) => {
     setEmail('');
     setPassword('');
   };
+  const handleIcon = () => {
+    setSecureTextEntry(!secureTextEntry);
+  };
   return (
-    <ScrollView showsVerticalScrollIndicator={false}>
-      <View style={styles.page}>
-        <>
-          <Header onPress={handleBack} />
-          <View style={styles.wrapperIlustration}>
-            <Image source={ILPayment} style={styles.ilustration} />
-            <Text style={styles.title}>
-              Mohon mengisi beberapa data untuk proses daftar anda
-            </Text>
-          </View>
-        </>
-        <>
-          <View style={styles.input}>
-            <Input
-              placeholder="Nama Lengkap"
-              value={name}
-              onChangeText={(value) => {
-                setName(value);
-                console.log('name : ', value);
-              }}
-            />
-            <Input
-              placeholder="Email"
-              value={email}
-              onChangeText={(value) => {
-                setEmail(value);
-                console.log('email : ', value);
-              }}
-            />
-            <Input
-              placeholder="Password"
-              value={password}
-              onChangeText={(value) => setPassword(value)}
-            />
-          </View>
-          <View style={styles.button}>
-            <Button titleBtn="Sign Up" onPress={handleSignUp} />
-          </View>
-        </>
-      </View>
-    </ScrollView>
+    // <ScrollView showsVerticalScrollIndicator={false}>
+    <View style={styles.page}>
+      <>
+        <Header onPress={handleBack} />
+        <View style={styles.wrapperIlustration}>
+          <Image source={ILPayment} style={styles.ilustration} />
+          <Text style={styles.title}>
+            Mohon mengisi beberapa data untuk proses daftar anda
+          </Text>
+        </View>
+      </>
+      <>
+        <View style={styles.input}>
+          <Input
+            placeholder="Nama Lengkap"
+            value={name}
+            onChangeText={(value) => setName(value)}
+          />
+          <Input
+            placeholder="Email"
+            value={email}
+            onChangeText={(value) => setEmail(value)}
+          />
+          <Input
+            secureTextEntry={secureTextEntry}
+            onPressIcon={handleIcon}
+            placeholder="Password"
+            value={password}
+            onChangeText={(value) => setPassword(value)}
+          />
+        </View>
+        <View style={styles.button}>
+          <Button titleBtn="Sign Up" onPress={handleSignUp} />
+        </View>
+      </>
+    </View>
+    // </ScrollView>
   );
 };
 
 export default Register;
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
   page: {
     flex: 1,
-    paddingHorizontal: 20,
-    paddingVertical: 10,
+    paddingHorizontal: '20rem',
+    paddingVertical: '10rem',
     backgroundColor: '#FFFFFF',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
   },
   wrapperIlustration: {
-    paddingHorizontal: 20,
+    paddingHorizontal: '20rem',
   },
   ilustration: {
-    width: 106,
-    height: 115,
+    width: '130rem',
+    height: '130rem',
   },
   title: {
-    fontSize: 14,
+    fontSize: '14rem',
     fontFamily: fonts.primary[600],
-    marginTop: 6,
-    maxWidth: 200,
+    marginTop: '6rem',
+    maxWidth: '200rem',
     color: '#00B0FF',
-  },
-  input: {
-    marginTop: 20,
-  },
-  button: {
-    marginTop: 25,
   },
 });

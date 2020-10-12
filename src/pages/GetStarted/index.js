@@ -1,5 +1,6 @@
 import React from 'react';
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {Text, View, Image} from 'react-native';
+import EStyleSheet from 'react-native-extended-stylesheet';
 import {fonts} from '../../utils';
 import {Button} from '../../components';
 import {ILVehicle} from '../../assets/images';
@@ -22,8 +23,8 @@ const GetStarted = ({navigation}) => {
           onPress={() => handleGoTo('Login')}
         />
         <Button
-          title="Silahlan masuk jika anda sudah memiliki akun"
-          titleBtn="Sign Up"
+          title="Atau silahkan daftar bila belum memiliki akun"
+          titleBtn="Daftar"
           onPress={() => handleGoTo('Register')}
         />
       </View>
@@ -33,24 +34,24 @@ const GetStarted = ({navigation}) => {
 
 export default GetStarted;
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
   page: {
     flex: 1,
-    paddingVertical: 20,
-    paddingHorizontal: 20,
+    paddingVertical: '20rem',
+    paddingHorizontal: '20rem',
     backgroundColor: '#FFFFFF',
     alignItems: 'center',
     justifyContent: 'space-between',
   },
   ilustration: {
-    width: 250,
-    height: 125,
+    width: '250rem',
+    height: '150rem',
     backgroundColor: '#00B0FF',
   },
   lead: {
-    fontSize: 17,
+    fontSize: '17rem',
     fontFamily: fonts.primary[700],
-    paddingTop: 10,
+    paddingTop: '10rem',
     textAlign: 'center',
     color: '#00B0FF',
   },

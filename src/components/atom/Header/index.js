@@ -1,5 +1,6 @@
 import React from 'react';
-import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
+import {View, Image, TouchableOpacity} from 'react-native';
+import EStyleSheet from 'react-native-extended-stylesheet';
 import {ICBack} from '../../../assets/icons/index';
 
 const Header = ({onPress}) => {
@@ -14,12 +15,12 @@ const Header = ({onPress}) => {
 
 export default Header;
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
   container: {
-    paddingVertical: 10,
+    paddingVertical: '10rem',
   },
   icon: {
-    width: 25,
-    height: 25,
+    width: '25rem',
+    height: '25rem',
   },
 });
