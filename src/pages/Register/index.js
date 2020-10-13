@@ -41,7 +41,10 @@ const Register = ({navigation}) => {
         <Header onPress={handleBack} />
         <View style={styles.wrapperIlustration}>
           <Image source={ILPayment} style={styles.ilustration} />
-          <Text style={styles.title}>{globalState.name}</Text>
+          <Text style={styles.title}>
+            Mohon mengisi beberapa data untuk proses daftar anda
+            {globalState.name}
+          </Text>
         </View>
       </>
       <>
