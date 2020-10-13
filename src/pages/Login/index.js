@@ -1,28 +1,24 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Text, View, Image} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import {Header, Input, Button} from '../../components';
 import {fonts} from '../../utils';
 import {ILSmile} from '../../assets/images';
+import {useSelector, useDispatch} from 'react-redux';
+import {setForm} from '../../redux';
 
 const Register = ({navigation}) => {
-  const [form, setForm] = useState({
-    email: '',
-    password: '',
-  });
-  const [secureTextEntry, setSecureTextEntry] = useState(true);
+  const LoginReducer = useSelector((state) => state.LoginReducer);
+  const dispatch = useDispatch();
 
   const handleBack = () => {
     navigation.goBack();
   };
-  const handleSignUp = () => {
-    const data = {
-      email: form.email,
-      password: form.password,
-    };
-    navigation.replace('MainApp', data);
-    console.log(data);
-    setForm('');
+  const handleLogin = () => {
+    console.log(LoginReducer.form);
+  };
+  const onInputChange = (value, inputType) => {
+    dispatch(setForm(inputType, value));
   };
   return (
     // <ScrollView showsVerticalScrollIndicator={false}>
@@ -40,17 +36,17 @@ const Register = ({navigation}) => {
         <View style={styles.input}>
           <Input
             placeholder="Email"
-            value={form.email}
-            onChangeText={(value) => setForm('email', value)}
+            value={LoginReducer.form.email}
+            onChangeText={(value) => onInputChange(value, 'email')}
           />
           <Input
             placeholder="Password"
-            value={form.password}
-            onChangeText={(value) => setForm('password', value)}
+            value={LoginReducer.form.password}
+            onChangeText={(value) => onInputChange(value, 'password')}
           />
         </View>
         <View style={styles.button}>
-          <Button titleBtn="Masuk" onPress={handleSignUp} />
+          <Button titleBtn="Masuk" onPress={handleLogin} />
         </View>
       </>
     </View>

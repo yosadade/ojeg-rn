@@ -1,43 +1,40 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import {Text, View, Image} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import {Header, Input, Button} from '../../components';
 import {fonts} from '../../utils';
 import {ILPayment} from '../../assets/images';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
+import {setForm} from '../../redux';
 
 const Register = ({navigation}) => {
   const RegisterReducer = useSelector((state) => state.RegisterReducer);
-
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [secureTextEntry, setSecureTextEntry] = useState(true);
-
-  useEffect(() => {
-    console.log(RegisterReducer);
-  });
+  const dispatch = useDispatch();
 
   const handleBack = () => {
     navigation.goBack();
   };
   const handleSignUp = () => {
-    const data = {
-      name: name,
-      email: email,
-      password: password,
-    };
-    // axios.post('url', data);
-    navigation.navigate('Login', data);
-    console.log('Register success dan kirim data ke Login');
-    console.log(data);
-    setName('');
-    setEmail('');
-    setPassword('');
+    // const data = {
+    //   name: name,
+    //   email: email,
+    //   password: password,
+    // };
+    // // axios.post('url', data);
+    // navigation.navigate('Login', data);
+    // console.log('Register success dan kirim data ke Login');
+    // console.log(data);
+    // setName('');
+    // setEmail('');
+    // setPassword('');
+    console.log(RegisterReducer.form);
+    dispatch(setForm);
   };
-  const handleIcon = () => {
-    setSecureTextEntry(!secureTextEntry);
+
+  const onInputChange = (value, inputType) => {
+    dispatch(setForm(inputType, value));
   };
+
   return (
     <View style={styles.page}>
       <>
@@ -46,7 +43,7 @@ const Register = ({navigation}) => {
           <Image source={ILPayment} style={styles.ilustration} />
           <Text style={styles.title}>
             Mohon mengisi beberapa data untuk proses daftar anda
-            {/* {RegisterReducer.title} */}
+            {RegisterReducer.title}
           </Text>
         </View>
       </>
@@ -54,20 +51,19 @@ const Register = ({navigation}) => {
         <View style={styles.input}>
           <Input
             placeholder="Nama Lengkap"
-            value={name}
-            onChangeText={(value) => setName(value)}
+            value={RegisterReducer.form.fullName}
+            onChangeText={(value) => onInputChange(value, 'fullName')}
           />
           <Input
             placeholder="Email"
-            value={email}
-            onChangeText={(value) => setEmail(value)}
+            value={RegisterReducer.form.email}
+            onChangeText={(value) => onInputChange(value, 'email')}
           />
           <Input
-            secureTextEntry={secureTextEntry}
-            onPressIcon={handleIcon}
+            secureTextEntry
             placeholder="Password"
-            value={password}
-            onChangeText={(value) => setPassword(value)}
+            value={RegisterReducer.form.password}
+            onChangeText={(value) => onInputChange(value, 'password')}
           />
         </View>
         <View style={styles.button}>
