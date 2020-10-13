@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Text, View, Image} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import {Header, Input, Button} from '../../components';
@@ -7,12 +7,16 @@ import {ILPayment} from '../../assets/images';
 import {useSelector} from 'react-redux';
 
 const Register = ({navigation}) => {
-  const globalState = useSelector((state) => state);
+  const RegisterReducer = useSelector((state) => state.RegisterReducer);
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [secureTextEntry, setSecureTextEntry] = useState(true);
+
+  useEffect(() => {
+    console.log(RegisterReducer);
+  });
 
   const handleBack = () => {
     navigation.goBack();
@@ -35,7 +39,6 @@ const Register = ({navigation}) => {
     setSecureTextEntry(!secureTextEntry);
   };
   return (
-    // <ScrollView showsVerticalScrollIndicator={false}>
     <View style={styles.page}>
       <>
         <Header onPress={handleBack} />
@@ -43,7 +46,7 @@ const Register = ({navigation}) => {
           <Image source={ILPayment} style={styles.ilustration} />
           <Text style={styles.title}>
             Mohon mengisi beberapa data untuk proses daftar anda
-            {globalState.name}
+            {/* {RegisterReducer.title} */}
           </Text>
         </View>
       </>
@@ -72,7 +75,6 @@ const Register = ({navigation}) => {
         </View>
       </>
     </View>
-    // </ScrollView>
   );
 };
 
@@ -94,7 +96,7 @@ const styles = EStyleSheet.create({
     height: '130rem',
   },
   title: {
-    fontSize: '14rem',
+    fontSize: '13rem',
     fontFamily: fonts.primary[600],
     marginTop: '6rem',
     maxWidth: '200rem',
